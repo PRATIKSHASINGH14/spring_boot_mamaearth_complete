@@ -19,12 +19,13 @@ public class AuthService {
         User user = new User();
         user.setUsername(registerRequest.getUsername());
         user.setPassword(registerRequest.getPassword());
+        user.setIsAdmin(registerRequest.getIsAdmin());
         authRepository.save(user);
     }
 
     public AuthenticationResponse login(LoginRequest loginRequest) {
         User user = authRepository.findByUsername(loginRequest.getUsername()).get();
-        if (loginRequest.getPassword() == user.getPassword())
+        if (loginRequest.getPassword().equals(user.getPassword()))
             return new AuthenticationResponse(user.getUsername(), user.getIsAdmin());
         return null;
     }

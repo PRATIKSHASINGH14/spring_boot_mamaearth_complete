@@ -8,6 +8,7 @@ import com.project.mama.earth.repository.OrderedItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -20,21 +21,25 @@ public class OrderService {
 
     public void createOrder(List<CartDto> cartItems) {
         Order order = new Order();
-        long orderId = order.getId();
         long price = 0;
         for(CartDto cartItem : cartItems ) {
-            OrderedItems orderedItem = new OrderedItems(cartItem);
-            orderedItem.setOrderId(orderId);
-            orderedItemsRepository.save(orderedItem);
             price+=cartItem.getPrice();
         }
         order.setTotalPrice(price);
         order.setCreatedDate(new Date());
-
+        order = orderRepository.save(order);
+        long orderId = order.getId();
+        orderRepository.flush();
+        for(CartDto cartItem : cartItems ) {
+            OrderedItems orderedItem = new OrderedItems(cartItem);
+            orderedItem.setOrderId(orderId);
+            orderedItemsRepository.save(orderedItem);
+        }
     }
 
     public List<OrderedItems> getAllOrders(String username) {
-        return orderedItemsRepository.findByUsernameGroupByOrderId(username).get();
+        return orderedItemsRepository.findAll()
+                .stream().filter(order-> order.getUsername().equals(username)).toList();
     }
 
 }

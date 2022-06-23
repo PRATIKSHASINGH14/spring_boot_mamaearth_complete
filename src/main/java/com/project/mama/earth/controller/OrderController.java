@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -28,14 +29,14 @@ public class OrderController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping("/get/all")
-    public ResponseEntity<List<OrderedItemsDto>> getAllOrders(@RequestBody String username) {
+    @GetMapping("/get/all/{username}")
+    public ResponseEntity<List<OrderedItemsDto>> getAllOrders(@PathVariable String username) {
         List<OrderedItemsDto> orderedItemsDto = new ArrayList<>();
         List<OrderedItems> orderedItems = orderService.getAllOrders(username);
         for(OrderedItems orderedItem: orderedItems) {
             OrderedItemsDto orderedItemDto = new OrderedItemsDto(orderedItem);
             orderedItemsDto.add(orderedItemDto);
         }
-        return new ResponseEntity<>(orderedItemsDto, HttpStatus.OK);
+        return ResponseEntity.ok(orderedItemsDto);
     }
 }

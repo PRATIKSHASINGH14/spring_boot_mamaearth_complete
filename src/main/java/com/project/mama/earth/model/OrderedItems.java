@@ -13,10 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "ordered_items")
 public class OrderedItems {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "order_id")
     private Long orderId;
     private String username;
     private String productName;
