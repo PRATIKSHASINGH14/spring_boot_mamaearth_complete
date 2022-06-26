@@ -6,19 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/mamaearth")
-@CrossOrigin(
-        origins = {"http://localhost:4200/"},
-//        allowCredentials = "true",
-//        allowedHeaders = {"*"},
-//        exposedHeaders = {"*"},
-//        maxAge = 60 * 30,
-        methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT}
-)
+@CrossOrigin("http://localhost:4200/")
+
 public class ProductController {
     @Autowired
     private ProductService productService;

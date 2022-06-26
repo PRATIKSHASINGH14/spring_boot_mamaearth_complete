@@ -11,15 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(
-        origins = {"http://localhost:4200/"},
-//        allowCredentials = "false",
-//        originPatterns = {"*"},
-//        allowedHeaders = {"*"},
-//        exposedHeaders = {"*"},
-//        maxAge = 60 * 30,
-        methods = {RequestMethod.GET, RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT}
-)
+@CrossOrigin("http://localhost:4200/")
+
 public class AuthController {
     @Autowired
     private AuthService authService;

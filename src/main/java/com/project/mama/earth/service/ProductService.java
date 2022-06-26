@@ -1,11 +1,9 @@
 package com.project.mama.earth.service;
 
-import com.project.mama.earth.exception.ProductNotFoundException;
 import com.project.mama.earth.model.Product;
 import com.project.mama.earth.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

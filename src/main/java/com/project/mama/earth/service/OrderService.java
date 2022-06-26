@@ -7,8 +7,6 @@ import com.project.mama.earth.repository.OrderRepository;
 import com.project.mama.earth.repository.OrderedItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class OrderService {
         Order order = new Order();
         long price = 0;
         for(CartDto cartItem : cartItems ) {
-            price+=cartItem.getPrice();
+            price+=cartItem.getPrice()*cartItem.getQuantity();
         }
         order.setTotalPrice(price);
         order.setCreatedDate(new Date());

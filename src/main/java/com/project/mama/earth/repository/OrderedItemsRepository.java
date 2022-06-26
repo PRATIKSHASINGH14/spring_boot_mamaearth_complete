@@ -10,6 +10,4 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public interface OrderedItemsRepository extends JpaRepository<OrderedItems,Long> {
-//    @Query(value = "SELECT * FROM ordered_items WHERE username=?1",nativeQuery = true)
-//    Collection<OrderedItems> getOrderItems(String username);
 }
