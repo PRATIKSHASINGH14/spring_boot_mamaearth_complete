@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -37,7 +38,7 @@ public class OrderService {
 
     public List<OrderedItems> getAllOrders(String username) {
         return orderedItemsRepository.findAll()
-                .stream().filter(order-> order.getUsername().equals(username)).toList();
+                .stream().filter(order-> order.getUsername().equals(username)).collect(Collectors.toList());
     }
 
 }
