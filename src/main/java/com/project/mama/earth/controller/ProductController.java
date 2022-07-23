@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mamaearth")
-@CrossOrigin("http://localhost:4200/")
+@CrossOrigin("*")
 
 public class ProductController {
     @Autowired
